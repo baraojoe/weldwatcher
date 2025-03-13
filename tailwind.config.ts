@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+                weldapp: {
+                    blue: '#1E3A8A',
+                    gray: '#374151',
+                    lightgray: '#F3F4F6',
+                    darkblue: '#0F172A',
+                    green: '#10B981',
+                    red: '#EF4444',
+                    yellow: '#F59E0B',
+                }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
