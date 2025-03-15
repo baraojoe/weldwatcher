@@ -16,18 +16,18 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "@/hooks/use-toast";
-import { MaintenanceRecord, WeldingGun, CheckpointStatus } from "@/types";
+import { MaintenanceRecord, WeldingGun, CheckpointStatus, CheckpointItem } from "@/types";
 import { Label } from "@/components/ui/label";
 
 // Predefined checkpoints
 const DEFAULT_CHECKPOINTS = [
-  { id: "cp-1", name: "Electrode Condition" },
-  { id: "cp-2", name: "Water Flow" },
-  { id: "cp-3", name: "Cable Condition" },
-  { id: "cp-4", name: "Pneumatic System" },
-  { id: "cp-5", name: "Cooling System" },
-  { id: "cp-6", name: "Controller Function" },
-  { id: "cp-7", name: "Arm Alignment" },
+  { id: "cp-1", name: "Electrode Condition", status: "OK" as CheckpointStatus },
+  { id: "cp-2", name: "Water Flow", status: "OK" as CheckpointStatus },
+  { id: "cp-3", name: "Cable Condition", status: "OK" as CheckpointStatus },
+  { id: "cp-4", name: "Pneumatic System", status: "OK" as CheckpointStatus },
+  { id: "cp-5", name: "Cooling System", status: "OK" as CheckpointStatus },
+  { id: "cp-6", name: "Controller Function", status: "OK" as CheckpointStatus },
+  { id: "cp-7", name: "Arm Alignment", status: "OK" as CheckpointStatus },
 ];
 
 const formSchema = z.object({
@@ -58,10 +58,7 @@ export default function MaintenanceLogForm({ gun, onSubmit }: MaintenanceLogForm
       date: new Date().toISOString().split("T")[0],
       performedBy: "",
       notes: "",
-      checkpoints: DEFAULT_CHECKPOINTS.map(cp => ({
-        ...cp,
-        status: "OK" as CheckpointStatus,
-      })),
+      checkpoints: DEFAULT_CHECKPOINTS,
     },
   });
 
@@ -102,10 +99,7 @@ export default function MaintenanceLogForm({ gun, onSubmit }: MaintenanceLogForm
     form.reset({
       ...values,
       notes: "",
-      checkpoints: DEFAULT_CHECKPOINTS.map(cp => ({
-        ...cp,
-        status: "OK" as CheckpointStatus,
-      })),
+      checkpoints: DEFAULT_CHECKPOINTS,
     });
     setCheckpointNotes({});
   };
